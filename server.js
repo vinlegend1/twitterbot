@@ -1,4 +1,5 @@
 const Twit = require('twit');
+const tweetIt = require('./helper/tweet');
 
 // config.js is "git-ignored" and all it has is my api and access token things
 const { consumer_key, consumer_secret, access_token, access_token_secret } = require('./config')
@@ -11,16 +12,23 @@ const T = new Twit({
     access_token_secret
 });
 
-// T.post('statuses/update', { status: 'hello world!' }, (err, data, response) => {
-//     console.log(data);
-// });
+// const time_break = 1000 * 60;
+// let random = Math.floor(Math.random() * 1000);
+// setInterval(() => tweetIt(T, "Hello from Node " + random), time_break);
 
-T.get('search/tweets', { q: 'banana since:2011-07-11', count: 2 }, function(err, data, response) {
-    console.log(data)
-});
+// const stream = T.stream('user', { track: ['python'] });
 
-// const stream = T.stream('statuses/filter', { track: '#apple', language: 'en' })
- 
-// stream.on('tweet', tweet => {
-//   console.log(tweet)
+// stream.on('statuses/filter', (tweet) => {
+//     // const name = eventMsg.source.name;
+//     // const screenName = eventMsg.source.screen_name;
+//     // tweetIt(T, ``)
+//     console.log(tweet);
 // })
+const stream = T.stream('statuses/filter', { track: ['thisissomethingrandom'] })
+
+stream.on('tweet', tweet => {
+    let random = Math.floor(Math.random() * 1000)
+    const newTweet = tweet ? `${tweet.text} - @${tweet.user.screen_name} P.S. this is a bot. I still have to figure out how to retweet.` : random;
+    // console.log(tweet.user.screen_name);
+    tweetIt(T, newTweet);
+})
