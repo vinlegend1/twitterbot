@@ -45,7 +45,7 @@ module.exports = {
 ```
 
 ## Dependencies
-- [twit package](github.com/ttezel/twit)
+- [twit package](https://github.com/ttezel/twit)
 
 ## Helper Functions
 - tweetIt(T: Twit Object, tweetText: String);
