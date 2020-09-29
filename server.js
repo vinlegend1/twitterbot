@@ -15,9 +15,9 @@ const T = new Twit({
 
 // tweetIt Implementation with setInterval()
 
-// const time_break = 1000 * 60;
+// const time_break = 1000 * 60 * 60 * 2; // every 2 hours
 // let random = Math.floor(Math.random() * 1000);
-// setInterval(() => tweetIt(T, "Hello from Node " + random), time_break);
+// setInterval(() => tweetIt(T, "Hello from Node " + random), time_break); // tweet every two hours
 
 // tweetCopier Implementation
 
